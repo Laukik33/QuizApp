@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router"
 
 @Component({
   selector: 'app-quiz',
@@ -7,8 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuizComponent implements OnInit {
 
-  constructor() { }
 
+  constructor(private router: Router) { 
+  }
+
+    //get user questions into an array
+    
+  name = this.router.getCurrentNavigation().extras.state.name;
+  //Password = this.router.getCurrentNavigation().extractedUrl.state.Password;
+  
   ngOnInit() {
   }
 

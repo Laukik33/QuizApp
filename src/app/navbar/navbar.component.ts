@@ -9,9 +9,12 @@ import { Router } from "@angular/router";
 export class NavbarComponent implements OnInit {
 
   constructor(private router: Router) { }
-
+    
   ngOnInit() {
   }
+
+   
+  Name = this.router.getCurrentNavigation().extras.state.name;
 
   signOut(){
     this.router.navigate(['/register']);
