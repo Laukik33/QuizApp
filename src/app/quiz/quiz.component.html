@@ -1,42 +1,63 @@
+<meta charset="utf-8">
 <app-navbar></app-navbar>
-<!-- Dropdown Trigger -->
 
 <div class="row">
-    <form class="col s6 offset-s3">
+    <form class="col s6 offset-s3" [formGroup]="quizForm">
         <div class="card">
-            <div class="col s12">
-                <h2 *ngFor="let q of questions; index as i;" class="center-align">{{ q }}</h2>
+            <div class="col s12" *ngIf="questions[questionProgress]">
+                <span class="center-align">Question# {{questionProgress+1}}</span>
+                <!-- Display the question starting at index of 0 -->
+                <h4 class="center-align">{{ questions[questionProgress] }}</h4>
+
             </div>
-<!-- <h1>{{seconds}}</h1> -->
+            <!-- <h1>{{seconds}}</h1> -->
             <div class="card-content">
-                <div class="row">
-                    <div class="input-field col s6">
-                        
-                        <h6 class="center-align"><span class="center-align">answer</span></h6>
-                    </div>
-                    <div class="input-field col s6">
-                        <h6 class="center-align"><span class="center-align">answer</span></h6>
+                <div class="row" *ngFor="let choice of allOptionAnswers[questionProgress]; i as index">
+                    <div class="input-field col s12">
+                        <!-- <label for="{{choice}}"> -->
+                        <!-- <div *ngIf="choice == userAnswerArr[i]">
+                                <label for="{{choice}}">
+                                    <input id="{{choice}}" formControlName="option" value="{{choice}}" type="radio" required="required" checked/>
+                                    <span>{{choice}}</span>
+                                </label>
+                            </div> -->
+                        <!-- <div *ngIf="choice != userAnswerArr[i]"> -->
+                        <label for="{{choice}}">
+                            <input id="{{choice}}" formControlName="option" value="{{choice}}" type="radio"
+                                required="required" />
+                            <span>{{choice}}</span>
+                        </label>
+                        <!-- </div> -->
+                        <!-- <input id="{{choice}}" formControlName="option" value="{{choice}}" type="radio" required="required" checked/> -->
+                        <!-- <span>{{choice}}</span> -->
+                        <!-- </label> -->
                     </div>
                 </div>
-                <div class="row">
-                    <div class="input-field col s6">
-                        <h6 class="center-align"><span class="center-align">answer</span></h6>
-                    </div>
-                    <div class="input-field col s6">
-                        <h6 class="center-align"><span class="center-align">answer</span></h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s6 ">
-                        <button class="btn-large btn-submit" type="submit">Next</button>
-                    </div>
-                    <div class="input-field col s6 ">
-                        <button class="btn-large btn-submit" type="submit">Next</button>
-                    </div>
-                    
-                    <!-- <button class="btn-large btn-submit" type="submit">Prev</button> -->
+            </div>
+            <!-- <div class="input-field col s6 ">
+                    <button *ngIf="questionProgress < questions.length && questionProgress > 0"(click)="previousQuestion()" class="btn-large btn-submit" type="submit">Previous</button>
+            </div> -->
 
+            <div class="input-field col s12" *ngIf="questionProgress != 10">
+                <button *ngIf="quizForm.controls['option'].invalid || questionProgress < questions.length"
+                    (click)="nextQuestion()" class="btn-large btn-submit" type="submit">Next</button>
+            </div>
+            <div class="row">
+                <h4 class="center-align" *ngIf="questionProgress > 9 && showResults">Correct: {{score}}</h4>
+                <h4 class="center-align" *ngIf="questionProgress > 9 && showResults">Incorrect:{{10 - score}}</h4>
+                <div class="input-field col s12 ">
+                    <button *ngIf="questionProgress > 9 " (click)="submit()" class="btn-large btn-submit"
+                        type="submit">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
                 </div>
-
+                <div class="input-field col s12 ">
+                    <button *ngIf="questionProgress > 9 " (click)="newQuiz()" class="btn-large btn-submit"
+                        type="submit">New Quiz
+                        <i class="material-icons right">cached</i>
+                    </button>
+                </div>
             </div>
         </div>
+    </form>
+</div>

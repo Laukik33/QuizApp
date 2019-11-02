@@ -22,6 +22,11 @@
             "password": "password"
         },
         {
+            "name": "abc",
+            "email": "abc@dev.com",
+            "password": "abc"
+        },
+        {
             "name": "Zineb Ghali",
             "email": "zineb@dev.com",
             "password": "password"

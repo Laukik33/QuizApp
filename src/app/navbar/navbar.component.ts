@@ -7,14 +7,24 @@ import { Router } from "@angular/router";
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+Name
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) { 
+    if (this.router.getCurrentNavigation().extras.state != null){
+      this.Name = this.router.getCurrentNavigation().extras.state.name;
+
+      
+    }
+
+
+  }
     
   ngOnInit() {
+    console.log(this.Name)
   }
-
-   
-  Name = this.router.getCurrentNavigation().extras.state.name;
+  
+  
+  
 
   signOut(){
     this.router.navigate(['/register']);

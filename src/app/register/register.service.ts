@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { user } from "src/assets/mockData/users.json";
+
 import { Router } from "@angular/router";
 
 @Injectable({
@@ -8,7 +9,7 @@ import { Router } from "@angular/router";
 })
 export class RegisterService {
   users = [];
-  //private url = "../assests/mockData/login.json"
+  
   constructor(private router: Router) { }
 
   getCredentials(username, password): boolean {
@@ -17,10 +18,13 @@ export class RegisterService {
       if (element.name == username &&
         element.password == password) {
         console.log(element);
-        this.router.navigate(['/quiz'], { state: { name: element.name } });
+        this.router.navigate(['/select'], { state: { name: element.name } });
+        
         return true;
       }
          });
          return false;
         }
+
+ 
 }

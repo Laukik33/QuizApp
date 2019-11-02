@@ -1,36 +1,42 @@
-<div class="row">
-    <div class="col s6 offset-s3">
-    <div class="card">
-    <div class="col s6">
-    <h2>Quiz Login</h2>
-</div>
-<div class="col s6">
-    <img src="/assets/img/logo.png" style="width:250px;height:250px;" class="offset-s3">
-</div>
-<div class="card-content">
-    <form #registerForm ="ngForm"  id="register" (ngSubmit)="onSubmit(registerForm.value)" autocomplete="off">
-        <div class="row">
+<div class="row valign-wrapper">
+  <div class="col s6 offset-s3">
+    <div class="card hoverable">
+      <div class="col s12">
+          <h2 class="center-align ">Quiz Login</h2>
+      </div>
+      <div class="col s6">
+        <!-- <img src="src/assets/img/logo.png" style="width:250px;height:250px;" class="offset-s3"> -->
+      </div>
+      <div class="card-content">
+        <form #registerForm="ngForm" autocomplete="off" id="register" (ngSubmit)="onSubmit(registerForm.value)" autocomplete="off">
+          <div class="row">
             <span *ngIf="!result">Username or Password Incorrect, Try Again</span>
             <div class="input-field col s12">
-                <i class="material-icons prefix">mail_outline</i>
-                <input type="text" name="Name"  class="validate"  ngModel  required minLength="3">
-                <label data-error="Username is required!">User: </label>
+              <i class="material-icons prefix">account_circle</i>
+              <input autocomplete="false" name="hidden" type="text" style="display:none;">
+              <input type="text" id="Name" name="Name" class="validate" ngModel required minLength="3">
+              <label for="Name">Name</label>
+              <span class="helper-text" data-error="Username is invalid!" data-success="right">Must be longer than three
+                characters</span>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">vpn_key</i>
+              <input type="password" id="password" class="validate" name="password" ngModel required minLength="3">
+              <label for="password">Password</label>
+              <span class="helper-text" data-error="Password is invalid!" data-success="right">Must be longer than three
+                characters</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <button class="btn-large btn-submit" type="submit" [class.pulse]="registerForm.valid" [disabled]="!registerForm.valid">Login</button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
-    </div>
-    <div class="row">
-    <div class="input-field col s12">
-    <i class="material-icons prefix">vpn_key</i>
-    <input type="password" class="validate" name="password" ngModel  required minLength="3">
-    <label data-error="Password is required!">Password</label>
-    </div>
-    </div>
-    <div class="row">
-    <div class="input-field col s12">
-    <button class="btn-large btn-submit" type="submit" [disabled]="!registerForm.valid">Login</button>
-    </div>
-    </div>
-    </form>
-    </div>
-    </div>
-    </div>
-    </div>
+  </div>
+</div>
